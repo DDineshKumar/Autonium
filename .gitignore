@@ -1,0 +1,42 @@
+# gradle
+.gradle/
+gradle/
+
+# webstorm files
+.idea/workspace.xml
+.idea
+# intellij files
+*.iml
+*.ipr
+*.iws
+**/*.iml
+**/*.ipr
+**/*.iws
+
+# dependencies directory
+dependencies
+
+# build directories
+**/build/
+build
+classes
+# two files we do not know how do get rid of
+**/*.filename_IS_UNDEFINED
+# directories generated during the build
+/out
+
+/target
+
+# other
+nohup.out
+www/
+*.log
+
+# dbspike project
+dbSpikes/build/
+
+# dbspike embedded neo4j database
+neo4jdatabase/
+
+# cucumber reporting
+adminUITests/target/
