@@ -35,9 +35,23 @@ public class DynamicLoading {
         Assert.assertTrue(findTheElement("h4", "Example 1: Element on page that is hidden").isDisplayed());
         Assert.assertTrue(findTheElement("button", "Start").isDisplayed());
         Assert.assertFalse(findTheElement("h4", "Hello World!").isDisplayed());
+        assert findTheElement("h4", "Hello World!").isDisplayed();
         findTheElement("button", "Start").click();
         WebDriverWait wait = new WebDriverWait(baseTestClass.driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(., 'Hello World!')]")));
         Assert.assertTrue(findTheElement("h4", "Hello World!").isDisplayed());
     }
+
+    public void verifyingTheRenderedElement() {
+        findTheElement("a", "Example 2: Element rendered after the fact").click();
+        Assert.assertTrue(findTheElement("h3", "Dynamically Loaded Page Elements").isDisplayed());
+        Assert.assertTrue(findTheElement("h4", "Example 2: Element rendered after the fact").isDisplayed());
+        Assert.assertTrue(findTheElement("button", "Start").isDisplayed());
+        findTheElement("button", "Start").click();
+        WebDriverWait wait = new WebDriverWait(baseTestClass.driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(., 'Hello World!')]")));
+        Assert.assertTrue(findTheElement("h4", "Hello World!").isDisplayed());
+
+    }
+
 }

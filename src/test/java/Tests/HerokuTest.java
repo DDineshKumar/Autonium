@@ -47,8 +47,6 @@ public class HerokuTest {
         basicAuthPage.basicAuthPageUrl();
         Assert.assertTrue(basicAuthPage.verifyingTheContentOfBasicAuthPage(basicAuthPage.basicAuthPageHeader));
         Assert.assertTrue(basicAuthPage.verifyingTheContentOfBasicAuthPage(basicAuthPage.basicAuthPageContent));
-
-
     }
 
     @Test
@@ -59,8 +57,8 @@ public class HerokuTest {
         checkboxesPage.clickingTheCheckbox(checkboxesPage.checkbox1);
         checkboxesPage.clickingTheCheckbox(checkboxesPage.checkbox2);
         Assert.assertTrue(checkboxesPage.verifyingTheStatusOfCheckBoxesAfterClicking());
-
     }
+
 
     @Test
     public void verifyTheDropdownPage() {
@@ -69,7 +67,6 @@ public class HerokuTest {
         dropdownPage.verifyingTheOptionsOfDropDown();
         dropdownPage.selectingTheOption("1");
         dropdownPage.selectingTheOption("2");
-
     }
 
     @Test
@@ -78,6 +75,8 @@ public class HerokuTest {
         homePage.clickOnElement("Dynamic Loading");
         dynamicLoading.verifyingTheDynamicLoadingPage();
         dynamicLoading.verifyingTheHiddenElement();
+        baseTestClass.goBack();
+        dynamicLoading.verifyingTheRenderedElement();
     }
 
     @AfterClass
