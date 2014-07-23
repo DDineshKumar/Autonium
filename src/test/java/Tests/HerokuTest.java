@@ -2,8 +2,14 @@ package Tests;
 
 import Frameworks.BaseTestClass;
 import Pages.*;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by dinesh on 10/07/14.
@@ -14,7 +20,7 @@ public class HerokuTest {
     Homepage homePage = new Homepage();
     String[] linkArray = homePage.getLinksHomePage();
 
-    @BeforeClass
+    @BeforeMethod
     public void openBrowser() {
         homePage.launchPage();
     }
@@ -22,7 +28,7 @@ public class HerokuTest {
     @Test
     public void verifyingTheHomePage() {
         for (String link : linkArray) {
-            assert homePage.findElementWithText(link).isDisplayed();
+            Assert.assertTrue(homePage.findElementWithText(link).isDisplayed());
         }
     }
 
@@ -30,29 +36,30 @@ public class HerokuTest {
     public void verifyTheABTestingPage() {
         AbTestingPage abTestingPage = new AbTestingPage();
         homePage.clickOnElement("A/B Testing");
-        assert abTestingPage.verifyingTheContent(abTestingPage.returnHeading());
-        assert abTestingPage.verifyingTheContent(abTestingPage.returnContent());
+        baseTestClass.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Assert.assertTrue(abTestingPage.verifyingTheContent(abTestingPage.returnHeading()));
+        Assert.assertTrue(abTestingPage.verifyingTheContent(abTestingPage.returnContent()));
     }
 
     @Test
     public void verifyTheBasicAuthPage() {
         BasicAuthPage basicAuthPage = new BasicAuthPage();
         basicAuthPage.basicAuthPageUrl();
-        assert basicAuthPage.verifyingTheContentOfBasicAuthPage(basicAuthPage.basicAuthPageHeader);
-        assert basicAuthPage.verifyingTheContentOfBasicAuthPage(basicAuthPage.basicAuthPageContent);
-        baseTestClass.goBack();
-        baseTestClass.goBack();
+        Assert.assertTrue(basicAuthPage.verifyingTheContentOfBasicAuthPage(basicAuthPage.basicAuthPageHeader));
+        Assert.assertTrue(basicAuthPage.verifyingTheContentOfBasicAuthPage(basicAuthPage.basicAuthPageContent));
+
+
     }
 
     @Test
-    public void verifyTheCheckboxesPage(){
+    public void verifyTheCheckboxesPage() {
         homePage.clickOnElement("Checkboxes");
         CheckboxesPage checkboxesPage = new CheckboxesPage();
-        assert checkboxesPage.verifyingTheInitialStatusOfCheckBoxes();
+        Assert.assertTrue(checkboxesPage.verifyingTheInitialStatusOfCheckBoxes());
         checkboxesPage.clickingTheCheckbox(checkboxesPage.checkbox1);
         checkboxesPage.clickingTheCheckbox(checkboxesPage.checkbox2);
-        assert checkboxesPage.verifyingTheStatusOfCheckBoxesAfterClicking();
-        baseTestClass.goBack();
+        Assert.assertTrue(checkboxesPage.verifyingTheStatusOfCheckBoxesAfterClicking());
+
     }
 
     @Test
@@ -62,13 +69,15 @@ public class HerokuTest {
         dropdownPage.verifyingTheOptionsOfDropDown();
         dropdownPage.selectingTheOption("1");
         dropdownPage.selectingTheOption("2");
-        baseTestClass.goBack();
+
     }
 
     @Test
-    public void verifyTheDynamicLoadingPage(){
+    public void verifyTheDynamicLoadingPage() {
         DynamicLoading dynamicLoading = new DynamicLoading();
+        homePage.clickOnElement("Dynamic Loading");
         dynamicLoading.verifyingTheDynamicLoadingPage();
+        dynamicLoading.verifyingTheHiddenElement();
     }
 
     @AfterClass

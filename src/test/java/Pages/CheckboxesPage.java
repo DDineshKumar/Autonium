@@ -21,14 +21,14 @@ public class CheckboxesPage {
     }
 
     public boolean verifyingTheInitialStatusOfCheckBoxes() {
-        if (getTheStatusofCheckboxes(checkbox1) == true && getTheStatusofCheckboxes(checkbox2) == false)
+        if (getTheStatusofCheckboxes(checkbox1) == false && getTheStatusofCheckboxes(checkbox2) == true)
             return true;
         else
             return false;
     }
 
     public boolean verifyingTheStatusOfCheckBoxesAfterClicking() {
-        if (getTheStatusofCheckboxes(checkbox1) == false && getTheStatusofCheckboxes(checkbox2) == true)
+        if (getTheStatusofCheckboxes(checkbox1) == true && getTheStatusofCheckboxes(checkbox2) == false)
             return true;
         else
             return false;

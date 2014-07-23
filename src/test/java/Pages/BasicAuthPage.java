@@ -10,7 +10,7 @@ public class BasicAuthPage {
 
     BaseTestClass baseTestClass = new BaseTestClass();
     public String basicAuthPageHeader = "Basic Auth";
-    public String basicAuthPageContent = "     Congratulations! You must have the proper credentials.   ";
+    public String basicAuthPageContent = "Congratulations! You must have the proper credentials.";
 
     public void basicAuthPageUrl() {
         String url = "http://admin:admin@the-internet.herokuapp.com/basic_auth";

@@ -21,8 +21,8 @@ public class DropdownPage {
     Select dropdown = new Select(baseTestClass.driver.findElement(By.id("dropdown")));
 
     public void selectingTheOption(String value) {
-                dropdown.selectByValue(value);
-                }
+        dropdown.selectByValue(value);
+    }
 
     public void verifyingTheOptionsOfDropDown() {
         boolean match;
