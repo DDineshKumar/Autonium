@@ -2,6 +2,7 @@ package Tests;
 
 import Frameworks.BaseTestClass;
 import Pages.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -77,6 +78,16 @@ public class HerokuTest {
         dynamicLoading.verifyingTheHiddenElement();
         baseTestClass.goBack();
         dynamicLoading.verifyingTheRenderedElement();
+    }
+
+    @Test
+    public void verifyTheLoginPage() throws Exception {
+        LoginPage loginPage = new LoginPage();
+        homePage.clickOnElement("Form Authentication");
+        loginPage.verifyingTheLoginPage();
+        loginPage.invalidUsername();
+        loginPage.invalidPassword();
+        loginPage.loggingInAndloggingOut();
     }
 
     @AfterClass
